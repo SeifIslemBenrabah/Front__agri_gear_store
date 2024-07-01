@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import Nav from '../Components/Nav'
 import path from '../Assetes/Images/path.png'
 import { Link } from 'react-router-dom'
@@ -13,8 +13,47 @@ const Shop = () => {
   const handldisplaycat = () =>{
     setcat(!cat)
   }
-  const [minp,setminp]=useState(0)
-  const [maxp,setmaxp]=useState(12000)
+  const [minVal, setMinVal] = useState(0);
+  const [maxVal, setMaxVal] = useState(12000);
+  const [minInput, setMinInput] = useState(null);
+  const [maxInput, setMaxInput] = useState(12000);
+  const sliderMinValue = 1;
+  const sliderMaxValue = 12000;
+  const minGap = 0;
+
+  useEffect(() => {
+    setArea();
+  }, [minVal, maxVal]);
+
+  const handleMin = (e) => {
+    let value = parseInt(e.target.value)||0;
+    if (value + minGap <= maxVal) {
+      setMinVal(value);
+      setMinInput(value);
+    }
+  };
+
+  const handleMax = (e) => {
+    let value = parseInt(e.target.value)||0;
+    if (value - minGap >= minVal) {
+      setMaxVal(value);
+      setMaxInput(value);
+    }
+  };
+
+
+  const setArea = () => {
+    const range = document.querySelector('.slider-track');
+    const minTooltip = document.querySelector('.min-tooltip');
+    const maxTooltip = document.querySelector('.max-tooltip');
+
+    range.style.left = `${((minVal - sliderMinValue) / (sliderMaxValue - sliderMinValue)) * 100}%`;
+    minTooltip.style.left = `${(minVal / sliderMaxValue) * 100}%`;
+    range.style.right = `${100 - ((maxVal - sliderMinValue) / (sliderMaxValue - sliderMinValue)) * 100}%`;
+    maxTooltip.style.right = `${100 - (maxVal / sliderMaxValue) * 100}%`;
+  };
+  
+  
   return (
     <div>
       <div className='relative'>
@@ -24,17 +63,113 @@ const Shop = () => {
             <Link to='/' className='text-lg text-white p-1 ml-2 font-poppins font-light'>Home</Link>
             <h1 className='text-lg text-brown mr-2 font-poppins font-light p-1'>&gt; Shop</h1>
         </div>
-        <div className='flex flex-row justify-around'>
-             <button className='bg-vertt rounded-3xl p-2 px-4'>
-                <div className='flex flex-row'>
-                    <h1 className='text-white text-xl font-poppins font-normal mr-1'>
+        
+           <div className='flex flex-row'>
+            <div className='flex flex-col mt-2 w-72'>
+              <div className='flex justify-end mr-8 mb-1'>
+            <button className='bg-vertt rounded-3xl flex justify-center w-[90px] py-1'>
+                <div className='flex flex-row items-center'>
+                    <h1 className='text-white text-lg font-poppins font-normal mr-1'>
                         Filter
                     </h1>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-white mt-[2px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 text-white mt-[2px]">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
                     </svg>
                 </div>
              </button>
+             </div>
+              <div className='flex flex-col'>
+                <div className={`flex flex-row justify-between ${cat?'mb-3':'mb-0'}`}>
+                  <h1 className='text-xl font-poppins font-semibold  ml-7'>
+                  All Categories
+                  </h1>
+                  <button onClick={handldisplaycat}>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className={`size-6  ${cat?'rotate-180':'rotate-0'}`}>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </svg>
+                  </button>
+                </div>
+                <div className={`${cat ? 'hidden':'block mx-10 mt-[2px]'}`}>
+                <form >
+                  <input className='my-1 accent-green-600 size-[10px] ' type="radio" id="html" name="Categories" value="HTML" />
+                  <label for="html" className='font-poppins font-normal text-sm ml-2'>All</label><br></br>
+                  <input className='my-1 accent-green-600 size-[10px]' type="radio" id="html" name="Categories" value="HTML"/>
+                  <label for="html" className='font-poppins font-normal text-sm ml-2'>Seeds & Plants</label><br></br>
+                  <input className='my-1 accent-green-600 size-[10px]' type="radio" id="html" name="Categories" value="HTML"/>
+                  <label for="html" className='font-poppins font-normal text-sm ml-2'>Farm Machinery</label><br></br>
+                  <input className='my-1 accent-green-600 size-[10px]' type="radio" id="html" name="Categories" value="HTML"/>
+                  <label for="html" className='font-poppins font-normal text-sm ml-2'>Fertilizers & Soil</label><br></br>
+                  <input className='my-1 accent-green-600 size-[10px]' type="radio" id="html" name="Categories" value="HTML"/>
+                  <label for="html" className='font-poppins font-normal text-sm ml-2'>Fodder</label>
+                </form>
+                </div>
+              </div>
+              <div className='flex flex-col'>
+                <div className='flex flex-row justify-between'>
+                  <h1 className='text-xl font-poppins font-semibold ml-7 '>
+                  Prices
+                  </h1>
+                  <button onClick={handldisplayprice}>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className={`size-6  ${price?'rotate-180':'rotate-0'}`}>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                  </svg>
+                  </button>
+                </div>
+                <div className={`${price ? 'hidden':'block mx-10 mt-2'}`}>
+                <div className='w-56'>
+  <div className='range-slider'>
+    <span className='slider-track'></span>
+    <input
+      type='range'
+      name='min_val'
+      className='min-val'
+      min={sliderMinValue}
+      max={sliderMaxValue}
+      value={minVal}
+      onChange={handleMin}
+    />
+    <input
+      type='range'
+      name='max_val'
+      className='max-val'
+      min={sliderMinValue}
+      max={sliderMaxValue}
+      value={maxVal}
+      onChange={handleMax}
+    />
+    <div className='tooltip min-tooltip font-poppins font-normal text-sm'>{minVal}</div>
+    <div className='tooltip max-tooltip font-poppins font-normal text-sm'>{maxVal}</div>
+  </div>
+  <div className='flex flex-row w-full'>
+    <div className='w-1/2 m-1 border rounded-md border-vertt flex flex-row justify-center items-center'>
+    <span className='font-poppins font-normal text-sm'>$</span>
+        <input
+          type='text'
+          name='min_input'
+          className='w-10/12  p-1  focus:outline-0 focus:ring-0 font-poppins font-normal'
+          value={minInput}
+          onChange={handleMin}
+        />
+    </div>
+    <div className='w-1/2 m-1 border rounded-md border-vertt flex flex-row justify-center items-center'>
+    <span className='font-poppins font-normal text-sm'>$</span>
+        <input
+          type='text'
+          name='max_input'
+          className='w-10/12 p-1 font-poppins font-normal  focus:outline-0 focus:ring-0'
+          value={maxInput}
+          onChange={handleMax}
+        />
+    </div>
+  </div>
+</div>
+
+                </div>
+              </div>
+            </div>
+            <div className='ml-5'>
+            <div className='flex flex-row justify-around'>
+             
              <div className='relative'>
   <input
     type='text'
@@ -64,71 +199,6 @@ const Shop = () => {
 </svg>
 </button>
            </div>
-           <div className='flex flex-row'>
-            <div className='flex flex-col mt-5'>
-              <div className='flex flex-col'>
-                <div className={`flex flex-row ${cat?'mb-3':'mb-0'}`}>
-                  <h1 className='text-2xl font-poppins font-semibold mr-14 mx-7'>
-                  All Categories
-                  </h1>
-                  <button onClick={handldisplaycat}>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className={`size-6 rotate-180 ${cat?'rotate-180':'rotate-0'}`}>
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                  </svg>
-                  </button>
-                </div>
-                <div className={`${cat ? 'hidden':'block mx-10 mt-2'}`}>
-                <form >
-                  <input className='my-2 accent-green-600 ' type="radio" id="html" name="Categories" value="HTML" />
-                  <label for="html" className='font-poppins font-normal text-base ml-2'>All</label><br></br>
-                  <input className='my-2 accent-green-600' type="radio" id="html" name="Categories" value="HTML"/>
-                  <label for="html" className='font-poppins font-normal text-base ml-2'>Seeds & Plants</label><br></br>
-                  <input className='my-2 accent-green-600' type="radio" id="html" name="Categories" value="HTML"/>
-                  <label for="html" className='font-poppins font-normal text-base ml-2'>Farm Machinery</label><br></br>
-                  <input className='my-2 accent-green-600' type="radio" id="html" name="Categories" value="HTML"/>
-                  <label for="html" className='font-poppins font-normal text-base ml-2'>Fertilizers & Soil</label><br></br>
-                  <input className='my-2 accent-green-600' type="radio" id="html" name="Categories" value="HTML"/>
-                  <label for="html" className='font-poppins font-normal text-base ml-2'>Fodder</label>
-                </form>
-                </div>
-              </div>
-              <div className='flex flex-col'>
-                <div className='flex flex-row'>
-                  <h1 className='text-2xl font-poppins font-semibold mr-[150px] mx-7 '>
-                  Prices
-                  </h1>
-                  <button onClick={handldisplayprice}>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className={`size-6 rotate-180 ${cat?'rotate-180':'rotate-0'}`}>
-                  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                  </svg>
-                  </button>
-                </div>
-                <div className={`${price ? 'hidden':'block mx-10 mt-2'}`}>
-                <div className='relative w-full h-1 my-8 mx-0 bg-gray '>
-                  <span className='h-full absolute bg-green-600'></span>
-                <input type="range" name='min_val' className='absolute w-full bg-transparent pointer-events-none top-1/2 transform -translate-y-1/2 appearance-none' min={minp} max={maxp} value={1000}/>
-                <input type="range" name='max_val' className='absolute w-full bg-transparent pointer-events-none top-1/2 transform -translate-y-1/2 appearance-none' min={minp} max={maxp} value={9000}/>
-                <div className='border-0 py-1 px-2 bg-black text-white text-lg rounded bottom-full block absolute text-center text-nowrap left-1/2 transform translate-x-1/4 -translate-y-full '></div>
-                <div className='border-0 py-1 px-2 bg-black text-white text-lg rounded bottom-full block absolute text-center text-nowrap right-1/2 transform -translate-x-1 -translate-y-full'></div>
-                </div>
-                <div className='flex'>
-                  <div className='w-20 mr-6'>
-                    <div className='input-wrap'>
-                      <span className='input-addon'>$</span>
-                      <input type='text' name='min-input' className='input-field min-input'>
-                      </input>
-                    </div>
-                  </div>
-                  <div className='w-20'>
-                    <div className='input-wrap'>
-                      <span className='input-addon'>$</span>
-                      <input type='text' name='max-input' className='input-field max-input'>
-                      </input>
-                    </div>
-                  </div>
-                </div>
-                </div>
-              </div>
             </div>
             </div>   
       </div>

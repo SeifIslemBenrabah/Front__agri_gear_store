@@ -10,7 +10,7 @@ const ForgetPassword = () => {
         <img src={Backg} alt='bg' className='absolute inset-0 w-full h-screen -z-10 brightness-65'/>
         <div className='flex justify-center items-center'>
         <div className='flex items-center flex-col p-5 bg-gray/30 backdrop-blur-sm rounded-xl mt-20'>
-            <h1 className='text-white text-center text-4xl font-poppins font-normal tracking-normal leading-tight mx-4'>
+            <h1 className='text-white text-center text-4xl font-poppins font-semibold tracking-normal leading-tight mx-4'>
             Reset Your Password New
             </h1>
             <p className='text-white text-center text-lg font-poppins font-light tracking-normal leanding-tight'>

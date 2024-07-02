@@ -34,7 +34,7 @@ const Login = () => {
                 <input type='text' placeholder='E-mail' className='w-[400px] h-[40px] bg-transparent border border-gray p-2 mx-3 rounded-lg custom-placeholder focus:outline-none focus:border-secondary text-white' required/>
               </div>
               <div className='group flex flex-col mt-2 mb-4'>
-                <p className='text-sm text-primary font-poppins font-bold ml-5 opacity-0 group-focus-within:opacity-100 '>Password</p>
+                <p className='text-xs text-primary font-poppins font-bold ml-5 opacity-0 group-focus-within:opacity-100'>Password</p>
                 <input type='text' placeholder='Password' className='w-[400px] h-[40px] bg-transparent border border-gray p-2 mx-3 rounded-lg custom-placeholder focus:outline-none focus:border-secondary text-white' required/>
               </div>
               <div className='flex justify-end'>

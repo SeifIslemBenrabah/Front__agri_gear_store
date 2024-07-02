@@ -144,3 +144,6 @@ input[type="range"]::-moz-range-thumb {
 .max-tooltip {
   right: 0;
 }
+.radio-group {
+  margin-bottom: 0px;
+}

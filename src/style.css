@@ -147,3 +147,10 @@ input[type="range"]::-moz-range-thumb {
 .radio-group {
   margin-bottom: 0px;
 }
+.scroll-container {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.scroll-container::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}

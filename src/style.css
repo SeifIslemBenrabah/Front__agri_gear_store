@@ -154,3 +154,26 @@ input[type="range"]::-moz-range-thumb {
 .scroll-container::-webkit-scrollbar {
   display: none;  /* Safari and Chrome */
 }
+.custom-placeholder::placeholder {
+  color: #999999;
+  opacity: 1;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.cust-placeholder:focus::placeholder {
+  color: #86D72F;
+  opacity: 1;
+  transform: translateY(-30px) scale(0.8) translateX(-40px);
+}
+.cust-placeholder:focus::placeholder {
+color: #86D72F;
+opacity: 1;
+transform: translateY(-30px) scale(0.8) translateX(-90px);
+}
+.cust-placeholder::placeholder {
+color: #999999;
+opacity: 1;
+font-size: 1.125rem ;
+line-height: 1.75rem;
+transition: color 0.3s ease, transform 0.3s ease;
+}

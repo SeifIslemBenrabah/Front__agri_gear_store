@@ -11,6 +11,13 @@ const C = () => {
     setNav(value);
     navigate(`/C/${value}`);
   };
+  const handlcart =() =>{
+    navigate('/ShoppingCart')
+  }
+  const handlelogout = () =>{
+    navigate(`http://localhost:3000`)
+    
+  }
   return (
     <div>
       <Nav openr={false}/>
@@ -60,7 +67,7 @@ const C = () => {
                 type='radio'
                 name='nav'
                 value='ShoppingCart'
-                onChange={handleNavigation} className='absolute h-full w-full m-0 cursor-pointer z-20 opacity-0 peer'/>
+                onChange={handlcart} className='absolute h-full w-full m-0 cursor-pointer z-20 opacity-0 peer'/>
     <label htmlFor='shopping-cart' className='h-full w-full peer-checked:border-l-2 border-secondary flex items-center transition-all duration-300 ease-in-out radio-tile peer-checked:bg-vert text-gray peer-checked:text-black'>
       <div className='ml-8 flex flex-row gap-3'>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
@@ -92,7 +99,7 @@ const C = () => {
                 type='radio'
                 name='nav'
                 value='Logout'
-                onChange={handleNavigation} className='absolute h-full w-full m-0 cursor-pointer z-20 opacity-0 peer'/>
+                onClick={handlelogout} className='absolute h-full w-full m-0 cursor-pointer z-20 opacity-0 peer'/>
     <label htmlFor='settings' className='h-full w-full  flex items-center transition-all duration-300 ease-in-out radio-tile peer-checked:bg-vert peer-checked:border-l-2 border-secondary text-gray peer-checked:text-black'>
       <div className='ml-8 flex flex-row gap-3'>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">

@@ -89,8 +89,8 @@ const Users = () => {
     </div>
 </div>
         </div>
-        <div className='scroll-container w-[780px] max-h-[340px] overflow-auto'>
-  <table className='table-auto w-full'>
+        <div className='scroll-container w-[780px] max-h-[340px] overflow-auto ml-2'>
+  <table className='table-auto w-full '>
         <thead className='sticky top-0 z-10 bg-white '>
     <tr>
       <th><div className='flex justify-start text-gray text-xl font-poppins border-b-2 border-graay'>User ID</div></th>

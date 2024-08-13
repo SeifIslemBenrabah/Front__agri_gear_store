@@ -54,7 +54,7 @@ const Home = () => {
         <br/>of agricultural equipment, tools, and<br/>
         supplies for efficient farming  </h1>
     </div>
-    <div className='flex justify-center mt-8'>
+    <div className='flex justify-center my-8'>
         <button className='bg-vertt rounded-3xl text-left p-2 px-5 relative'>
             <div className='flex justify-between items-center'>
                 <h1 className='text-white font-poppins font-medium text-2xl mr-0'>
@@ -78,7 +78,7 @@ const Home = () => {
         </button>
     </div>
     </div>
-    <div className='my-20'>
+    <div className='my-28'>
         <h1 className='text-brown text-center text-4xl font-poppins font-extrabold mb-12'>Categories</h1>
         <div className='flex justify-around flex-wrap gap-4'>
         <section>
